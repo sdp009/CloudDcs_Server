@@ -5,7 +5,6 @@
  */
 package create_db;
 
-import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -14,17 +13,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.nio.charset.Charset;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.json.JSONObject;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  *
@@ -73,6 +71,7 @@ public class AddIndex {
     }
     
     public void prepareDesktopList() throws IOException{
+        Scanner scan = new Scanner(System.in);
         this.getComputerName();
         /*
         //run locate *.desktop
@@ -95,6 +94,10 @@ public class AddIndex {
                 "Run following cmd:");
         System.out.println("1. sudo updatedb;\n" +
                 "2. sudo locate *.desktop > " + path.toAbsolutePath());
+        
+        System.out.println("Hit ENTER to cont...");
+        String cont= scan.nextLine();
+
         //Files.write(file, dlist, Charset.forName("UTF-8"));
     }
     
@@ -219,7 +222,9 @@ public class AddIndex {
         }
     }
     
-    public void desktopToJson(){
+    public void desktopToJson() throws IOException{
+        Description d = new Description();
+        String description = d.describe(this.insertNm);
         try{
             //String[] comments= new String[1];
             //ArrayList <String> comments= new ArrayList<>();
@@ -230,8 +235,9 @@ public class AddIndex {
             //json.put("message","trying out Elasticsearch\'s dataformat");
             //json.put("comments", comments);
             
-            json.put("name",this.insertNm);
+            json.put("title",this.insertNm);
             json.put("comment",this.Comment);
+	    json.put("description",description);
             json.put("exec",this.Exec);
             json.put("tryexec",this.TryExec);
             json.put("path",this.strLine);
@@ -240,6 +246,7 @@ public class AddIndex {
             json.put("terminal",this.Terminal);
             json.put("categories", this.Category);
             json.put("mimeTypes",this.Mime);
+	    json.put("likes",new Integer(0));
             
             /*Gson gson = new Gson(); 
             String toJson = gson.toJson(json); 
@@ -258,9 +265,9 @@ public class AddIndex {
             }
             BufferedWriter writer;
             writer = new BufferedWriter(new FileWriter(path.toAbsolutePath().toString(),true));
-            //writer.append("[");
+            writer.append("{\"index\":{}}\n");
             writer.append(map2json.toString());
-            writer.append(",");
+            writer.append("\n");
      
             writer.close();
             
