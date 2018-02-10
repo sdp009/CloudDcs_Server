@@ -33,7 +33,7 @@ public class DataVerification {
             int indexL=deskFile.length();
                     
             insertNm = deskFile.substring(index, indexL);
-            insertNm=insertNm.replaceAll("\"", "\\\\\""); 
+            insertNm=insertNm.replaceAll("\"", "\\\""); 
             insertNm=insertNm.toLowerCase();
         //}
         //System.out.printf("Name = %s\n",insertNm);
@@ -48,7 +48,7 @@ public class DataVerification {
                 int indexL=deskFile.length();
                     
                 Exec = deskFile.substring(index, indexL);
-                Exec=Exec.replaceAll("\"", "\\\\\"");
+                Exec=Exec.replaceAll("\"", "\\\"");
             }
         //System.out.printf("Exec = %s\n",Exec);
         return Exec;
@@ -62,7 +62,7 @@ public class DataVerification {
             int indexL=deskFile.length();
                     
             IconPath = deskFile.substring(index, indexL);
-            IconPath=IconPath.replaceAll("\"", "\\\\\"");   
+            IconPath=IconPath.replaceAll("\"", "\\\"");   
         }
         //System.out.printf("IconPath = %s\n",IconPath);                    
         return IconPath;
@@ -76,7 +76,7 @@ public class DataVerification {
             int indexL=deskFile.length();
                     
             TryExec = deskFile.substring(index, indexL);
-            TryExec=TryExec.replaceAll("\"", "\\\\\"");                        
+            TryExec=TryExec.replaceAll("\"", "\\\"");                        
         } 
         //System.out.printf("TryExec = %s\n\n",TryExec);
         return TryExec;
@@ -90,7 +90,7 @@ public class DataVerification {
             int indexL=deskFile.length();
                     
             Comment = deskFile.substring(index, indexL);
-            Comment=Comment.replaceAll("\"", "\\\\\"");  
+            Comment=Comment.replaceAll("\"", "\\\"");  
         //}
         return Comment;
     }
@@ -127,7 +127,7 @@ public class DataVerification {
             int indexL=deskFile.length();
             
             substr = deskFile.substring(index, indexL);
-            substr=substr.replaceAll("\"", "\\\\\"");  
+            substr=substr.replaceAll("\"", "\\\"");  
 
         //}
         //System.out.println("cat substr: "+substr);
@@ -146,7 +146,7 @@ public class DataVerification {
             int indexL=deskFile.length();
             
             substr = deskFile.substring(index, indexL);
-            substr=substr.replaceAll("\"", "\\\\\"");  
+            substr=substr.replaceAll("\"", "\\\"");  
             
         //}
         //System.out.println("Mime substr: "+substr);
